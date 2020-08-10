@@ -1,0 +1,9 @@
+{
+  "name": "pacman-web",
+  "version": "0.0.0",
+  "description": "PacmanWeb",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  }
+}
