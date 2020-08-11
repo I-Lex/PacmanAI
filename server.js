@@ -7,18 +7,22 @@ var fs = require('fs');
 var port = process.env.PORT || 1337;
 
 http.createServer(function (req, res) {
+   
+    if (req.url === '/favicon.ico') {
+        res.writeHead(200, {'Content-Type': 'image/x-icon'});
+        res.end();
+        console.log('favicon requested');
+        return;
+      }
+
     try {
-        var requestUrl = url.parse(req.url); if (requestUrl.path = '/') {
-            requestUrl.pathname = '/index.html'
-            requestUrl.path = '/index.html'
-            requestUrl.href = '/index.html'
-        };
+        var requestUrl = url.parse(req.url);
         var fsPath = baseDir + path.normalize(requestUrl.pathname);
 
         var fileStream = fs.createReadStream(fsPath) ;
         fileStream.pipe(res)
         fileStream.on('open', () => {
-            res.writeHead(200, {"Content-Type": "text/html"});
+            res.writeHead(200);
             res.end
             });
         fileStream.on('err', (err) => {
